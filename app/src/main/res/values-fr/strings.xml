@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Recipe</string>
+
+    <!-- DetailsScreen -->
+    <string name="published_by">Publié par :</string>
+    <string name="rating">Note :</string>
+    <string name="ingredients">Ingrédients</string>
+    <string name="back">Retour</string>
+    <string name="recipe_not_found">Recette introuvable</string>
+
+    <!-- ListScreen -->
+    <string name="recipe_image_description">Image de la recette</string>
+</resources>

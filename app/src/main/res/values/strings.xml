@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Recipe</string>
+
+    <!-- DetailsScreen -->
+    <string name="published_by">Published by:</string>
+    <string name="rating">Rating:</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="back">Back</string>
+    <string name="recipe_not_found">Recipe not found</string>
+
+    <!-- ListScreen -->
+    <string name="recipe_image_description">Recipe image</string>
+</resources>
