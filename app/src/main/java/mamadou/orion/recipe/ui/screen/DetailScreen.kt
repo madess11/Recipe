@@ -27,56 +27,57 @@ import mamadou.orion.recipe.viewmodel.RecipeViewModel
 
 @Composable
 fun DetailScreen(navController: NavController, recipeId: Int, viewModel: RecipeViewModel) {
-    val recipe = viewModel.recipes.collectAsState().value.find { it.pk == recipeId }
+
+    val recipes by viewModel.recipes.collectAsState()
+    val recipe = remember { recipes.find { it.pk == recipeId } }
 
     recipe?.let {
-            LazyColumn(
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp)
-            ) {
-                item {
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            )  {
 
-                    AsyncImage(
-                        model = recipe.featured_image,
-                        contentDescription = recipe.title,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
-                    )
+                AsyncImage(
+                    model = recipe.featured_image,
+                    contentDescription = recipe.title,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(250.dp)
+                )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-                    Text(
-                        text = "${stringResource(R.string.published_by)} ${recipe.publisher}",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Gray
-                    )
+                Text(
+                    text = "${stringResource(R.string.published_by)} ${recipe.publisher}",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Gray
+                )
 
-                    Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))
 
-                    Text(
-                        text = "${stringResource(R.string.rating)} ${recipe.rating} ⭐",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                Text(
+                    text = "${stringResource(R.string.rating)} ${recipe.rating} ⭐",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-                    Text(
-                        text = stringResource(R.string.ingredients),
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                Text(
+                    text = stringResource(R.string.ingredients),
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold
+                )
 
-                    IngredientList(recipe.ingredients)
-                }
-
+                IngredientList(recipe.ingredients)
 
 
 
-                item {
+
+
                     Spacer(modifier = Modifier.height(24.dp))
 
                     Button(
@@ -85,7 +86,6 @@ fun DetailScreen(navController: NavController, recipeId: Int, viewModel: RecipeV
                     ) {
                         Text(stringResource(R.string.back))
                     }
-                }
             }
 
     } ?: run {

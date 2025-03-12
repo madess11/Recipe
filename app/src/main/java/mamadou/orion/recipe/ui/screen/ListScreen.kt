@@ -1,7 +1,5 @@
 package mamadou.orion.recipe.ui.screen
 
-import android.util.Log
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,7 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode.Companion.Screen
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -24,22 +22,28 @@ import mamadou.orion.recipe.viewmodel.RecipeViewModel
 fun ListScreen(navController: NavController, viewModel: RecipeViewModel) {
     val recipes by viewModel.recipes.collectAsState()
 
-    LazyColumn {
+    // Utilisation de LazyColumn pour afficher les recettes de manière paresseuse
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
         items(recipes) { recipe ->
-
-         //   Log.d("recipes =>",recipes.toString())
-
+            // Utilisation de la navigation pour afficher les détails de la recette
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)
-                    .clickable { Log.d("Navigation", "ID de la recette : ${recipe.pk}") },
-//                    .clickable { navController.navigate(Screen.Detail.createRoute(recipe.pk)) },
+                    .clickable {
+                        // Navigation vers l'écran de détail avec l'ID de la recette
+                        navController.navigate("detail/${recipe.pk}")
+                    },
                 elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
             ) {
                 Row(modifier = Modifier.padding(8.dp)) {
                     AsyncImage(
                         model = recipe.featured_image,
+
                         contentDescription = stringResource(R.string.recipe_image_description),
                         modifier = Modifier
                             .width(120.dp) // Réduire la taille pour éviter de prendre toute la largeur
@@ -54,7 +58,6 @@ fun ListScreen(navController: NavController, viewModel: RecipeViewModel) {
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
-
             }
         }
     }
