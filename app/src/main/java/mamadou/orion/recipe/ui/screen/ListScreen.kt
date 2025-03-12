@@ -1,5 +1,6 @@
 package mamadou.orion.recipe.ui.screen
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -25,27 +26,35 @@ fun ListScreen(navController: NavController, viewModel: RecipeViewModel) {
 
     LazyColumn {
         items(recipes) { recipe ->
+
+         //   Log.d("recipes =>",recipes.toString())
+
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp),
+                    .padding(8.dp)
+                    .clickable { Log.d("Navigation", "ID de la recette : ${recipe.pk}") },
 //                    .clickable { navController.navigate(Screen.Detail.createRoute(recipe.pk)) },
                 elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
             ) {
                 Row(modifier = Modifier.padding(8.dp)) {
-
-
                     AsyncImage(
                         model = recipe.featured_image,
-                        contentDescription = R.string.recipe_image_description.toString(),
+                        contentDescription = stringResource(R.string.recipe_image_description),
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp)
+                            .width(120.dp) // Réduire la taille pour éviter de prendre toute la largeur
+                            .height(120.dp)
                     )
 
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = recipe.title)
+
+                    Text(
+                        text = recipe.title,
+                        modifier = Modifier.weight(1f), // Permet au texte de prendre l'espace restant
+                        style = MaterialTheme.typography.bodyLarge
+                    )
                 }
+
             }
         }
     }
