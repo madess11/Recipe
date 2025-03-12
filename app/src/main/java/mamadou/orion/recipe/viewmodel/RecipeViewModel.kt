@@ -2,6 +2,7 @@ package mamadou.orion.recipe.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import mamadou.orion.recipe.data.Recipe
 import mamadou.orion.recipe.data.RecipeRepository
@@ -19,5 +20,16 @@ class RecipeViewModel(context: Context) : ViewModel() {
         viewModelScope.launch {
             _recipes.value = repository.getRecipes(query, page)
         }
+    }
+}
+
+class RecipeViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
+
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(RecipeViewModel::class.java)) {
+            return RecipeViewModel(RecipeRepository(context)) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

@@ -5,14 +5,18 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import coil.compose.rememberImagePainter
-import com.example.recipesapp.R
-import com.example.recipesapp.Screen
+import coil3.compose.AsyncImage
+import mamadou.orion.recipe.R
 import mamadou.orion.recipe.viewmodel.RecipeViewModel
 
 @Composable
@@ -24,18 +28,23 @@ fun ListScreen(navController: NavController, viewModel: RecipeViewModel) {
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp)
-                    .clickable { navController.navigate(Screen.Detail.createRoute(recipe.pk)) },
-                elevation = 4.dp
+                    .padding(8.dp),
+//                    .clickable { navController.navigate(Screen.Detail.createRoute(recipe.pk)) },
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
             ) {
                 Row(modifier = Modifier.padding(8.dp)) {
-                    Image(
-                        painter = rememberImagePainter(recipe.featured_image),
-                        contentDescription = stringResource(R.string.recipe_image_description),
-                        modifier = Modifier.size(80.dp)
+
+
+                    AsyncImage(
+                        model = recipe.featured_image,
+                        contentDescription = R.string.recipe_image_description.toString(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(250.dp)
                     )
+
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = recipe.title, style = MaterialTheme.typography.h6)
+                    Text(text = recipe.title)
                 }
             }
         }
