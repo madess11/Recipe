@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
 
                 LaunchedEffect(Unit) {
                     try {
-                        viewModel.fetchRecipes(query = "beef", page = 1)
+                        viewModel.fetchRecipes()
                         isLoading = false
                     } catch (e: Exception) {
                         errorMessage = "Erreur de chargement des recettes : ${e.message}"

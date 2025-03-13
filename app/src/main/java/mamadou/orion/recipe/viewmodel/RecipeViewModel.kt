@@ -17,10 +17,11 @@ class RecipeViewModel(context: Context) : ViewModel() {
     private val _recipes = MutableStateFlow<List<Recipe>>(emptyList())
     val recipes: StateFlow<List<Recipe>> = _recipes
 
-    fun fetchRecipes(query: String, page: Int) {
+    fun fetchRecipes(query: String="beef%20carrot%20potato%20onion", page: Int=1) {
         viewModelScope.launch {
             _recipes.value = repository.getRecipes(query, page)
 
+            Log.d("query =>",query)
             Log.d("Données reçues",_recipes.value.toString())
         }
     }
