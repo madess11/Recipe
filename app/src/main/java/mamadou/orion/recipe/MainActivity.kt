@@ -4,32 +4,34 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.runtime.remember
-import androidx.compose.material3.*
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-import androidx.navigation.compose.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import mamadou.orion.recipe.ui.screen.*
+import mamadou.orion.recipe.ui.screen.DetailScreen
+import mamadou.orion.recipe.ui.screen.ListScreen
+import mamadou.orion.recipe.ui.theme.RecipeTheme
 import mamadou.orion.recipe.viewmodel.RecipeViewModel
 import mamadou.orion.recipe.viewmodel.RecipeViewModelFactory
-import mamadou.orion.recipe.ui.theme.RecipeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,13 +58,6 @@ class MainActivity : ComponentActivity() {
 
                 if (isLoading) {
                     LoadingScreen()
-//                    Image(
-//                        painter = painterResource(id = R.drawable.logo),
-//                        contentDescription = "Eiffel Tower",
-//                        modifier = Modifier
-//                            .size(100.dp)
-//                            .padding(bottom = 8.dp)
-//                    )
                 } else if (errorMessage != null) {
                     ErrorScreen(errorMessage!!)
                 } else {

@@ -9,13 +9,6 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import mamadou.steve.recipe.ui.theme.Pink40
-import mamadou.steve.recipe.ui.theme.Pink80
-import mamadou.steve.recipe.ui.theme.Purple40
-import mamadou.steve.recipe.ui.theme.Purple80
-import mamadou.steve.recipe.ui.theme.PurpleGrey40
-import mamadou.steve.recipe.ui.theme.PurpleGrey80
-import mamadou.steve.recipe.ui.theme.Typography
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,

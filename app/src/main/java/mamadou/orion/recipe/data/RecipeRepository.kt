@@ -1,9 +1,6 @@
 package mamadou.orion.recipe.data
 
 import android.content.Context
-import mamadou.orion.recipe.data.ApiService
-import mamadou.orion.recipe.data.Recipe
-import mamadou.orion.recipe.data.RecipeDatabase
 
 class RecipeRepository(context: Context) {
     private val db = RecipeDatabase.getDatabase(context)

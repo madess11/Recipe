@@ -28,7 +28,6 @@ fun ListScreen(navController: NavController, viewModel: RecipeViewModel = viewMo
 
     // Définition des catégories depuis la query
     val baseQuery = "chicken+soup+beef+carrot+potato+onion"
-    val baseQuery2 = "beef%20carrot%20potato%20onion"
     val categories =  baseQuery.removePrefix("query=").split("+")
 
     // Charger les recettes au démarrage et lors du changement de catégorie

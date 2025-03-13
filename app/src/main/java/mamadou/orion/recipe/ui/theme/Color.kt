@@ -1,4 +1,4 @@
-package mamadou.steve.recipe.ui.theme
+package mamadou.orion.recipe.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
